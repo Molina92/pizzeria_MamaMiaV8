@@ -1,11 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header";
 import CardPizza from "./CardPizza";
-import { pizzas } from "../Pizzas.js";
 import Cart from "./Cart.jsx";
+
+const urlBase = "http://localhost:5000/api/pizzas";
 
 export default function Home() {
   const [cart, setCart] = useState([]);
+  const [data, setData] = useState([]);
+
+  const getPizzas = async () => {
+    const response = await fetch(urlBase);
+    const pizzas = await response.json();
+    setData(pizzas);
+  };
+
+  useEffect(() => {
+    getPizzas();
+  }, []);
 
   const addToCart = (pizza) => {
     setCart([...cart, pizza]);
@@ -19,7 +31,7 @@ export default function Home() {
     <>
       <Header />
       <div className="d-flex flex-wrap justify-content-center gap-2 mt-3">
-        {pizzas.map((pizza) => (
+        {data.map((pizza) => (
           <div className="row mt-3" key={pizza.id}>
             <CardPizza
               nombre={pizza.name}

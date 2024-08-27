@@ -46,5 +46,29 @@
     "ingredients": ["mozzarella", "pimientos", "pollo grillé", "orégano"],
     "name": "pollo picante",
     "price": 8500
+  },
+  {
+    "desc": "La pizza Margherita, un clásico italiano con tomate, mozzarella y albahaca fresca.",
+    "id": "p007",
+    "img": "https://www.thespruceeats.com/thmb/c8788285f372434897e516b3b704c9c9/1500x1125/filters:no_upscale():max_quality():strip_icc()/margherita-pizza-56a8b85059b4c36e11000003.jpg",
+    "ingredients": ["tomate", "mozzarella", "albahaca"],
+    "name": "Margherita",
+    "price": 6500
+  },
+  {
+    "desc": "La clásica pizza pepperoni, con queso mozzarella y abundante pepperoni.",
+    "id": "p008",
+    "img": "https://www.seriouseats.com/recipes/images/2019/04/20190409-pepperoni-pizza-03.jpg",
+    "ingredients": ["mozzarella", "pepperoni"],
+    "name": "Pepperoni",
+    "price": 7000
+  },
+  {
+    "desc": "La controvertida pizza hawaiana, con piña y jamón.",
+    "id": "p009",
+    "img": "https://www.allrecipes.com/thmb/97375941549c440488961b37702025a3/735x551/filters:no_upscale():max_quality():strip_icc()/Hawaiian-Pizza-1-4b1c38d1.jpg",
+    "ingredients": ["piña", "jamón", "mozzarella"],
+    "name": "Hawaiana",
+    "price": 7500
   }
 ]

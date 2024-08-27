@@ -68,20 +68,19 @@ const Cart = ({ pizzasInCart, onEmptyCart }) => {
             <h2>Carrito de Compras</h2>
             <ul className="p-5 d-flex flex-wrap gap-4 justify-content-center">
               {cartItems.map(({ id, name, img, price, quantity }) => (
-                <li key={id} className="cart-item" style={{ listStyle: "none", width: "400px", height: "140px" }}>
-                  <div className="card" style={{ maxWidth: "400px" }}>
+                <li key={id} className="cart-item" style={{ listStyle: "none"}}>
+                  <div className="card" style={{ maxWidth: "380px", height: "140px" }}>
                     <div className="row g-0">
                       <div className="col-md-4">
                         <img
                           src={img}
                           className="img-fluid rounded-start"
                           alt={name}
-                          style={{ height: "-webkit-fill-available" }}
                         />
                       </div>
                       <div className="col-md-8 ">
                         <div className="card-body p-1 d-flex flex-wrap justify-content-around p-2">
-                          <h5 className="card-title">{name}</h5>
+                          <h5 className="card-title">Pizza {name}</h5>
                           <p className="card-text">
                             {FormatearMonto(price * quantity)}
                           </p>

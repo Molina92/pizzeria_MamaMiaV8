@@ -7,17 +7,25 @@ const urlBase = "http://localhost:5000/api/pizzas";
 
 export default function Home() {
   const [cart, setCart] = useState([]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); //declaro otro state para traer los datos del pizzas.json
+  const [isLoading, setIsLoading] = useState(false); 
 
   const getPizzas = async () => {
-    const response = await fetch(urlBase);
-    const pizzas = await response.json();
-    setData(pizzas);
+    setIsLoading(true);
+    try {
+      const response = await fetch(urlBase);
+      const pizzas = await response.json();
+      setData(pizzas); // en vez de asignarlo a cart porque con cart hago otras operaciones lo asigno
+    } catch (error) { // a setData que es el otro estado que declare arriba
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
     getPizzas();
-  }, []);
+  }, [isLoading]);
 
   const addToCart = (pizza) => {
     setCart([...cart, pizza]);
@@ -44,7 +52,11 @@ export default function Home() {
           </div>
         ))}
       </div>
-      <Cart className="mt-3 text-light" pizzasInCart={cart} onEmptyCart={handleEmptyCart} />
+      <Cart
+        className="mt-3 text-light"
+        pizzasInCart={cart}
+        onEmptyCart={handleEmptyCart}
+      />
     </>
   );
 }

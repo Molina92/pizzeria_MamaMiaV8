@@ -7,7 +7,7 @@ const urlBase = "http://localhost:5000/api/pizzas";
 
 export default function Home() {
   const [cart, setCart] = useState([]);
-  const [data, setData] = useState([]); //declaro otro state para traer los datos del pizzas.json
+  const [data, setData] = useState([]); 
   const [isLoading, setIsLoading] = useState(false); 
 
   const getPizzas = async () => {
@@ -15,8 +15,8 @@ export default function Home() {
     try {
       const response = await fetch(urlBase);
       const pizzas = await response.json();
-      setData(pizzas); // en vez de asignarlo a cart porque con cart hago otras operaciones lo asigno
-    } catch (error) { // a setData que es el otro estado que declare arriba
+      setData(pizzas); 
+    } catch (error) { 
       console.error(error);
     } finally {
       setIsLoading(false);

@@ -21,8 +21,8 @@ export default function CardPizza({ nombre, precio, ingredientes, imagen, addToC
           <div className='mt-3 border-bottom border-3'>
             <Card.Text className='fs-3 fw-semibold'>Precio: {FormatearMonto(precio)}</Card.Text>
             <div className='d-flex justify-content-around mb-3'>
-              <Button variant="light" className='border border-3'>Ver Más </Button>
-              <Button variant="dark" className='border border-3' onClick={() => addToCart(pizza)}>Añadir </Button>
+              <Button variant="light" className='border border-3'>Ver Más 👀</Button>
+              <Button variant="dark" className='border border-3' onClick={() => addToCart(pizza)}>Añadir 🛒</Button>
             </div>
           </div>
         </Card.Body>

@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import FormatearMonto from './FormatearMonto';
 import { Container } from 'react-bootstrap';
+import { DisplayNombre } from './DisplayNombre';
 
 export default function CardPizza({ nombre, precio, ingredientes, imagen, addToCart, pizza }) {
   return (
@@ -9,7 +10,7 @@ export default function CardPizza({ nombre, precio, ingredientes, imagen, addToC
       <Card style={{ width: '25rem', height: '41rem' }} className='border border-3 p-2'>
         <Card.Img variant="top" src={imagen} />
         <Card.Body>
-          <Card.Title className='fs-3 border-bottom border-3 p-2'>Pizza {nombre}</Card.Title>
+          <Card.Title className='fs-3 border-bottom border-3 p-2'>Pizza {DisplayNombre(nombre)}</Card.Title>
           <div className='d-flex align-items-center border-bottom border-3 justify-content-evenly p-1 '>
             <Card.Text><span className='fs-5 fw-light'>Ingredientes:</span></Card.Text>
             <ul className='list-group list-group-flush text-start'>

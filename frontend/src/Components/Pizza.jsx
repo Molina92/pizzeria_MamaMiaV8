@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import FormatearMonto from './FormatearMonto';
+import { DisplayNombre } from './DisplayNombre';
 
 const urlBase = "http://localhost:5000/api/pizzas/p001";
 
@@ -33,18 +34,18 @@ export const Pizza = () => {
                     <div className="container">
                         <div className="container my-5 d-flex flex-column">
                             <div className="card my-4" key={data.id}>
-                                <div className="row g-0" style={{ maxHeight: '450px' }}>
-                                    <div className="col-md-6" style={{ Height: '100%' }}>
+                                <div className="row g-0" style={{ height: '450px', maxHeight: 'auto' }}>
+                                    <div className="col-lg-6" style={{ height: '100%' }}>
                                         <img
                                             src={data.img}
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            style={{ width: '100%', height: '100%' }}
                                             className="img-fluid rounded-start"
                                             alt={data.name}
                                         />
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-lg-6">
                                         <div className="card-body text-start">
-                                            <h5 className="card-title fs-2">Pizza {data.name}</h5>
+                                            { data.name ? (<h5 className="card-title fs-2">Pizza {DisplayNombre(data.name)}</h5>) : null}
                                             <p className="card-text p-2">{data.desc}</p>
                                             <div className="container mb-3">
                                                 <ul className="list-group list-group-flush text-start">

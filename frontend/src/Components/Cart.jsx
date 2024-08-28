@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import FormatearMonto from "./FormatearMonto";
+import { DisplayNombre } from "./DisplayNombre";
 
 const Cart = ({ pizzasInCart, onEmptyCart }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -80,7 +81,7 @@ const Cart = ({ pizzasInCart, onEmptyCart }) => {
                       </div>
                       <div className="col-md-8 ">
                         <div className="card-body p-1 d-flex flex-wrap justify-content-around p-2">
-                          <h5 className="card-title">Pizza {name}</h5>
+                          <h5 className="card-title">Pizza {DisplayNombre(name)}</h5>
                           <p className="card-text">
                             {FormatearMonto(price * quantity)}
                           </p>

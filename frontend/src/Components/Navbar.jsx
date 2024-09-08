@@ -51,7 +51,7 @@ export default function CustomNavbar() {
                 </>
               )}
             </Nav>
-            <Button variant="primary"> Total: {FormatearMonto(total)}</Button>
+            <Link to="/cart" className="btn btn-primary">🛒Total: {FormatearMonto(total)}</Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

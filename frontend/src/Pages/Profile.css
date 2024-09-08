@@ -1,0 +1,7 @@
+.user-card {
+    background: linear-gradient(to bottom, #f2f2f2, #fff);
+}
+
+.user-img {
+    border: 2px solid #ddd;
+}

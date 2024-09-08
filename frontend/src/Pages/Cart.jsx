@@ -8,7 +8,7 @@ const Cart = ({ pizzasInCart, onEmptyCart }) => {
   useEffect(() => {
     const updatedCartItems = [];
 
-    pizzasInCart.forEach(newItem => {
+    pizzasInCart?.forEach(newItem => {
       const existingItemIndex = updatedCartItems.findIndex(item => item.id === newItem.id);
 
       if (existingItemIndex >= 0) {
@@ -62,7 +62,7 @@ const Cart = ({ pizzasInCart, onEmptyCart }) => {
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
-    <>
+    <>      
       {cartItems.length > 0 ? (
         <div className="text-light" style={{ marginTop: "5rem" }}>
           <div className="cart ">
@@ -102,9 +102,11 @@ const Cart = ({ pizzasInCart, onEmptyCart }) => {
             </div>
           </div>
         </div>
-      ) : null} {/* //renderiza null si el carro esta vacio */}
+      ) : 
+      <h3 className="text-light my-5">Carrito vacío</h3>
+      }
     </>
-  );
+  ); 
 };
 
 export default Cart;

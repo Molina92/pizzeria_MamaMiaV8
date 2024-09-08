@@ -8,6 +8,7 @@ import { Register } from "./pages/Register";
 import  Cart from "./pages/Cart";
 import { Pizza } from "./pages/Pizza";
 import { Profile } from "./pages/Profile";
+import { NotFound } from "./Pages/NotFound";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/pizza/p001" element={<Pizza />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

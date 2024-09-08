@@ -7,16 +7,16 @@ const urlBase = "http://localhost:5000/api/pizzas";
 
 export default function Home() {
   const [cart, setCart] = useState([]);
-  const [data, setData] = useState([]); 
-  const [isLoading, setIsLoading] = useState(false); 
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getPizzas = async () => {
     setIsLoading(true);
     try {
       const response = await fetch(urlBase);
       const pizzas = await response.json();
-      setData(pizzas); 
-    } catch (error) { 
+      setData(pizzas);
+    } catch (error) {
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -52,12 +52,14 @@ export default function Home() {
           </div>
         ))}
       </div>
-      <Cart
-        className="mt-3 text-light"
-        pizzasInCart={cart}
-        onEmptyCart={handleEmptyCart}
-      />
+      
+      {cart.length > 0 ? (
+        <Cart
+          className="mt-3 text-light"
+          pizzasInCart={cart}
+          onEmptyCart={handleEmptyCart}
+        />
+      ) : null}
     </>
-    
   );
 }

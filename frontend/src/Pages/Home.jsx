@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "./Header";
 import CardPizza from "./CardPizza";
-import Cart from "./Cart.jsx";
+import Cart from "./Cart";
 
 const urlBase = "http://localhost:5000/api/pizzas";
 

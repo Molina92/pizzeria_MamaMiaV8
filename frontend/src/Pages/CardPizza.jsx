@@ -1,8 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import FormatearMonto from './FormatearMonto';
+import FormatearMonto from "../Components/FormatearMonto";
 import { Container } from 'react-bootstrap';
-import { DisplayNombre } from './DisplayNombre';
+import { DisplayNombre } from '../Components/DisplayNombre';
 
 export default function CardPizza({ nombre, precio, ingredientes, imagen, addToCart, pizza }) {
   return (

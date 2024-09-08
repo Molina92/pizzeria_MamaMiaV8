@@ -1,5 +1,3 @@
-import React from 'react'
-import Image from 'react-bootstrap/Image';
 import './Header.css';
 
 export default function Header() {

@@ -1,25 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from './Components/Navbar'
-import Home from './Components/Home'
-import Footer from './Components/Footer'
-import { Pizza } from './Components/Pizza'
-// import { Register } from './Components/Register'
-// import { Login } from './Components/Login'
+import "./App.css";
+import Navbar from "./Components/Navbar";
+import Home from "./pages/Home";
+import Footer from "./Components/Footer";
+import { Routes, Route } from "react-router-dom";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
 
 function App() {
   return (
     <>
-      <div className='min-vh-100 bg-dark'>
-      <Navbar />
-      {/* <Home /> */}
-      {/* <Login /> */}
-      {/* <Register /> */}
-      <Pizza />
-      <Footer />
+      <div className="min-vh-100 bg-dark">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+        <Footer />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

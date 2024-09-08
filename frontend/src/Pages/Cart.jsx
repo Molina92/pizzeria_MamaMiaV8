@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import FormatearMonto from "./FormatearMonto";
-import { DisplayNombre } from "./DisplayNombre";
+import FormatearMonto from "../Components/FormatearMonto";
+import { DisplayNombre } from "../Components/DisplayNombre";
 
 const Cart = ({ pizzasInCart, onEmptyCart }) => {
   const [cartItems, setCartItems] = useState([]);

@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import FormatearMonto from "../Components/FormatearMonto";
 import { DisplayNombre } from "../Components/DisplayNombre";
+import { CartContext } from "../Context/CartContext";
 
-const Cart = ({ pizzasInCart, onEmptyCart }) => {
+const Cart = () => {
+
+  const { cart, setCart, total, setTotal } = useContext(CartContext);
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const updatedCartItems = [];
 
-    pizzasInCart?.forEach(newItem => {
+    cart?.forEach(newItem => {
       const existingItemIndex = updatedCartItems.findIndex(item => item.id === newItem.id);
 
       if (existingItemIndex >= 0) {
@@ -28,7 +31,7 @@ const Cart = ({ pizzasInCart, onEmptyCart }) => {
 
     // Actualizar el estado con el nuevo array
     setCartItems(updatedCartItems);
-  }, [pizzasInCart]);
+  }, [cart]);
 
   const handleIncrease = (id) => {
     const updatedCart = cartItems.map((item) => {
@@ -52,15 +55,18 @@ const Cart = ({ pizzasInCart, onEmptyCart }) => {
     // Si el carrito está vacío después de la actualización, establecerlo como un array vacío
     if (updatedCart.length === 0) {
       setCartItems([]);
-      onEmptyCart();
+      setCart([]);
     } else {
       setCartItems(updatedCart);
     }
   };
 
-  // Calcular el total de la compra
-  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
+  // Calcular el total de la compra y actualizar el valor de setTotal
+  useEffect(() => {
+    const totalOperation = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    setTotal(totalOperation);
+  }, [cartItems]);
+  
   return (
     <>      
       {cartItems.length > 0 ? (

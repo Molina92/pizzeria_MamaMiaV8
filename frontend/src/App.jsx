@@ -1,13 +1,13 @@
 import "./App.css";
 import Navbar from "./Components/Navbar";
-import Home from "./pages/Home";
+import Home from "./Pages/Home";
 import Footer from "./Components/Footer";
 import { Routes, Route } from "react-router-dom";
-import { Login } from "./pages/Login";
-import { Register } from "./pages/Register";
-import  Cart from "./pages/Cart";
-import { Pizza } from "./pages/Pizza";
-import { Profile } from "./pages/Profile";
+import { Login } from "./Pages/Login";
+import { Register } from "./Pages/Register";
+import  Cart from "./Pages/Cart";
+import { Pizza } from "./Pages/Pizza";
+import { Profile } from "./Pages/Profile";
 import { NotFound } from "./Pages/NotFound";
 
 function App() {

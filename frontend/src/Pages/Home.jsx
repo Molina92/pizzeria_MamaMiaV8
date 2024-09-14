@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { CartContext } from "../Context/CartContext";
 import Header from "./Header";
 import CardPizza from "./CardPizza";
-import Cart from "./Cart";
 
 const urlBase = "http://localhost:5000/api/pizzas";
 
 export default function Home() {
-  const [cart, setCart] = useState([]);
+
+  const { cart, setCart } = useContext(CartContext);
+  
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,10 +33,6 @@ export default function Home() {
     setCart([...cart, pizza]);
   };
 
-  const handleEmptyCart = () => {
-    setCart([]);
-  };
-
   return (
     <>
       <Header />
@@ -52,14 +50,6 @@ export default function Home() {
           </div>
         ))}
       </div>
-      
-      {cart.length > 0 ? (
-        <Cart
-          className="mt-3 text-light"
-          pizzasInCart={cart}
-          onEmptyCart={handleEmptyCart}
-        />
-      ) : null}
     </>
   );
 }

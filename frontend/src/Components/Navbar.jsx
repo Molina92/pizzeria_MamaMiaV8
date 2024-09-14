@@ -1,10 +1,11 @@
 import { Container, Navbar, Nav, NavItem, NavLink } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import FormatearMonto from "./FormatearMonto";
+import { useContext, useEffect } from "react";
+import { CartContext } from "../Context/CartContext";
 
 export default function CustomNavbar() {
-  const total = 25000;
+  const { total } = useContext(CartContext);
   const token = false;
 
   return (

@@ -6,15 +6,19 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
 
-  useEffect(() => {
-    const totalOperation = cart.reduce(
-      (acc, item) =>
-        acc +
-        (parseFloat(item.price) || 0) * (parseInt(item.quantity, 10) || 0),
-      0
-    );
-    setTotal(totalOperation);
-  }, [cart]);
+  const addToCart = (item) => {
+    const existingItemIndex = cart.findIndex((i) => i.id === item.id);
+    if (existingItemIndex >= 0) {
+      const updatedCart = cart.map((i, index) =>
+        index === existingItemIndex
+          ? { ...i, quantity: (i.quantity || 0) + (item.quantity || 1) }
+          : i
+      );
+      setCart(updatedCart);
+    } else {
+      setCart([...cart, { ...item, quantity: item.quantity || 1 }]);
+    }
+  };
 
   const handleIncrease = (id) => {
     const updatedCart = cart.map((item) => {
@@ -40,19 +44,15 @@ const CartProvider = ({ children }) => {
     setCart(updatedCart);
   };
 
-  const addToCart = (item) => {
-    const existingItemIndex = cart.findIndex((i) => i.id === item.id);
-    if (existingItemIndex >= 0) {
-      const updatedCart = cart.map((i, index) =>
-        index === existingItemIndex
-          ? { ...i, quantity: (i.quantity || 0) + (item.quantity || 1) }
-          : i
-      );
-      setCart(updatedCart);
-    } else {
-      setCart([...cart, { ...item, quantity: item.quantity || 1 }]);
-    }
-  };
+  useEffect(() => {
+    const totalOperation = cart.reduce(
+      (acc, item) =>
+        acc +
+        (parseFloat(item.price) || 0) * (parseInt(item.quantity, 10) || 0),
+      0
+    );
+    setTotal(totalOperation);
+  }, [cart]);
 
   return (
     <CartContext.Provider

@@ -1,7 +1,7 @@
 import { Container, Navbar, Nav, NavItem, NavLink } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import FormatearMonto from "./FormatearMonto";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
 
 export default function CustomNavbar() {
@@ -52,7 +52,7 @@ export default function CustomNavbar() {
                 </>
               )}
             </Nav>
-            <Link to="/cart" className="btn btn-primary">🛒Total: {FormatearMonto(total)}</Link>
+            <Link to="/cart" className="btn btn-primary">🛒 Total: {FormatearMonto(total)}</Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -1,32 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
+import { DataContext } from "../Context/DataContext";
 import Header from "./Header";
 import CardPizza from "./CardPizza";
 
-const urlBase = "http://localhost:5000/api/pizzas";
-
 export default function Home() {
-  const { addToCart } = useContext(CartContext);
-
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const getPizzas = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(urlBase);
-      const pizzas = await response.json();
-      setData(pizzas);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getPizzas();
-  }, [isLoading]);
+  const { addToCart} = useContext(CartContext);
+  const { data } = useContext(DataContext);
 
   return (
     <>

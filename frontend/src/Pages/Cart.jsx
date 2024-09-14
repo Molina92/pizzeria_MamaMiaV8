@@ -4,7 +4,7 @@ import { DisplayNombre } from "../Components/DisplayNombre";
 import { CartContext } from "../Context/CartContext";
 
 const Cart = () => {
-  const { cart, setCart, total, setTotal, handleIncrease, handleDecrease } = useContext(CartContext);
+  const { cart, total, handleIncrease, handleDecrease } = useContext(CartContext);
 
   return (
     <>

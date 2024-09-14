@@ -6,9 +6,8 @@ import CardPizza from "./CardPizza";
 const urlBase = "http://localhost:5000/api/pizzas";
 
 export default function Home() {
+  const { addToCart } = useContext(CartContext);
 
-  const { cart, setCart } = useContext(CartContext);
-  
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,10 +27,6 @@ export default function Home() {
   useEffect(() => {
     getPizzas();
   }, [isLoading]);
-
-  const addToCart = (pizza) => {
-    setCart([...cart, pizza]);
-  };
 
   return (
     <>

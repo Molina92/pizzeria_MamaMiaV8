@@ -15,6 +15,7 @@ export default function Home() {
         {data.map((pizza) => (
           <div className="row mt-3" key={pizza.id}>
             <CardPizza
+              id={pizza.id}
               nombre={pizza.name}
               precio={pizza.price}
               ingredientes={pizza.ingredients}

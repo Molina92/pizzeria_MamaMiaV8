@@ -3,15 +3,14 @@ import Card from "react-bootstrap/Card";
 import FormatearMonto from "../Components/FormatearMonto";
 import { Container } from "react-bootstrap";
 import { DisplayNombre } from "../Components/DisplayNombre";
+import { useNavigate } from "react-router-dom";
 
-export default function CardPizza({
-  nombre,
-  precio,
-  ingredientes,
-  imagen,
-  addToCart,
-  pizza,
-}) {
+export default function CardPizza({ id, nombre, precio, ingredientes, imagen, addToCart, pizza }) {
+  const navigate = useNavigate();
+  const handleNavigate = (id) => {
+    navigate(`/pizzas/${id}`);
+  };
+
   return (
     <Container className="m-3">
       <Card
@@ -41,7 +40,7 @@ export default function CardPizza({
               Precio: {FormatearMonto(precio)}
             </Card.Text>
             <div className="d-flex justify-content-around mb-3">
-              <Button variant="light" className="border border-3">
+              <Button variant="light" className="border border-3" onClick={() => handleNavigate(id)}>
                 Ver Más 👀
               </Button>
               <Button

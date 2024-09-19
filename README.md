@@ -11,5 +11,5 @@ Currently, two official plugins are available:
 
 >[!TIP]
 >
->- Hito número 6 realizado usando React + Vite + Bootstrap para Desafío Latam
->- Implementación de React Context para tener el carrito de compras de forma global para todos los componentes
+>- Hito número 7 realizado usando React + Vite + Bootstrap para Desafío Latam
+>- Implementación de React Context en el ámbito del Usuario para obtener vistas y rutas protegidas 

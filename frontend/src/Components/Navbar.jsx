@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import FormatearMonto from "./FormatearMonto";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
+import { UserContext } from "../Context/UserContext";
 
 export default function CustomNavbar() {
   const { total } = useContext(CartContext);
-  const token = false;
+  const { token, logout } = useContext(UserContext);
+  
 
   return (
     <>
@@ -32,7 +34,7 @@ export default function CustomNavbar() {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink as={Link} to="/logout">
+                    <NavLink as={Link} to="/logout" onClick={logout}>
                       🔒 Logout
                     </NavLink>
                   </NavItem>

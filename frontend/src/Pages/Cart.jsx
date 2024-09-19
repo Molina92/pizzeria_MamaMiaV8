@@ -2,9 +2,13 @@ import { useContext } from "react";
 import FormatearMonto from "../Components/FormatearMonto";
 import { DisplayNombre } from "../Components/DisplayNombre";
 import { CartContext } from "../Context/CartContext";
+import { UserContext } from "../Context/UserContext";
 
 const Cart = () => {
-  const { cart, total, handleIncrease, handleDecrease } = useContext(CartContext);
+  const { cart, total, handleIncrease, handleDecrease } =
+    useContext(CartContext);
+
+  const { token } = useContext(UserContext);
 
   return (
     <>
@@ -37,7 +41,7 @@ const Cart = () => {
                             Pizza {DisplayNombre(name)}
                           </h5>
                           <p className="card-text">
-                            {FormatearMonto(price*quantity)}
+                            {FormatearMonto(price * quantity)}
                           </p>
                           <div className="container d-flex flex-wrap justify-content-center align-items-center">
                             <button
@@ -61,8 +65,16 @@ const Cart = () => {
                 </li>
               ))}
             </ul>
-            <div className="total">
-              <h3>Total: {FormatearMonto(total)}</h3>
+
+            <div className="container p-5 d-flex justify-content-center gap-3">
+              <button type="button" class="btn btn-success disabled">
+                Total: {FormatearMonto(total)}
+              </button>
+              {token ? (
+                <button type="button" class="btn btn-primary">
+                  Pagar 💲
+                </button>
+              ) : null}
             </div>
           </div>
         </div>

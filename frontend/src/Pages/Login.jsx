@@ -1,38 +1,16 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { UserContext } from '../Context/UserContext'
 
 export const Login = () => {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState(false)
-
-    const validarDatos = (e) => {
-        e.preventDefault()
-
-        if (!email.trim() || !password.trim()) {
-            setError(true)
-            return
-        }
-
-        if (password.length >= 6) {
-            alert('Información enviada exitosamente');
-            setError(false);
-
-            setEmail('');
-            setPassword('');
-        } else {
-            alert('La contraseña debe tener al menos 6 caracteres.');
-        }
-    }
+    const { email, setEmail, password, setPassword, handleSubmit } = useContext(UserContext)
 
     return (
         <>
             <div className='container-fluid'>
                 <div className='container p-5'>
                     <div className="container p-5">
-                        <form className="formulario m-5" onSubmit={validarDatos}>
-                            {error ? <p className="text-danger">Todos los campos son obligatorios</p> : null}
-
+                        <form className="formulario m-5" onSubmit={handleSubmit}>
                             <div className="form-group m-4">
                                 <label className="text-light">Email:</label>
                                 <input

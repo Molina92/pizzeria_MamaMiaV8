@@ -28,8 +28,11 @@ const UserProvider = ({ children }) => {
             }),
         });
         const data = await response.json();
-        alert(data?.error || "Authentication successful!");
-        localStorage.setItem("token", data.token);
+        if (data.token) {
+            localStorage.setItem("token", data.token);
+            setToken(data.token);
+            navigate("/");
+        }
     };
 
     const handleRegister = async (e) => {

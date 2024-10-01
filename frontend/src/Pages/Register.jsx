@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { UserContext } from '../Context/UserContext'
+
 
 export const Register = () => {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+    const { handleRegister, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword } = useContext(UserContext)
     const [error, setError] = useState(false)
 
     const validarDatos = (e) => {
@@ -36,7 +36,7 @@ export const Register = () => {
             <div className='container-fluid'>
                 <div className='container p-5'>
                     <div className="container p-5">
-                        <form className="formulario m-5" onSubmit={validarDatos}>
+                        <form className="formulario m-5" onSubmit={handleRegister}>
                             {error ? <p className="text-danger">Todos los campos son obligatorios</p> : null}
 
                             <div className="form-group m-4">

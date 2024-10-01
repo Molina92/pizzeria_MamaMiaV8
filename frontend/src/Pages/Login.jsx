@@ -3,14 +3,14 @@ import { UserContext } from '../Context/UserContext'
 
 export const Login = () => {
 
-    const { email, setEmail, password, setPassword, handleSubmit } = useContext(UserContext)
+    const { email, setEmail, password, setPassword, handleLogin } = useContext(UserContext)
 
     return (
         <>
             <div className='container-fluid'>
                 <div className='container p-5'>
                     <div className="container p-5">
-                        <form className="formulario m-5" onSubmit={handleSubmit}>
+                        <form className="formulario m-5" onSubmit={handleLogin}>
                             <div className="form-group m-4">
                                 <label className="text-light">Email:</label>
                                 <input

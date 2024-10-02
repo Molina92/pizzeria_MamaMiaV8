@@ -5,10 +5,10 @@ import { CartContext } from "../Context/CartContext";
 import { UserContext } from "../Context/UserContext";
 
 const Cart = () => {
-  const { cart, total, handleIncrease, handleDecrease } =
+  const { cart, setCart, total, handleIncrease, handleDecrease } =
     useContext(CartContext);
 
-  const { token } = useContext(UserContext);
+  const { token, handleCheckout } = useContext(UserContext);
 
   return (
     <>
@@ -67,11 +67,15 @@ const Cart = () => {
             </ul>
 
             <div className="container p-5 d-flex justify-content-center gap-3">
-              <button type="button" class="btn btn-success disabled">
+              <button type="button" className="btn btn-success disabled">
                 Total: {FormatearMonto(total)}
               </button>
               {token ? (
-                <button type="button" class="btn btn-primary">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleCheckout}
+                >
                   Pagar 💲
                 </button>
               ) : null}

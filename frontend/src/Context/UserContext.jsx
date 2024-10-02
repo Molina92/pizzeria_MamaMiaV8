@@ -1,9 +1,9 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { CartContext } from "../Context/CartContext";
 export const UserContext = createContext();
 
-const urlBase = "http://localhost:5000/api/auth";
+const urlBase = "http://localhost:5000/api";
 const initialStateToken = localStorage.getItem("token") || null;
 
 const UserProvider = ({ children }) => {
@@ -14,10 +14,11 @@ const UserProvider = ({ children }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(false);
   const [userData, setUserData] = useState({});
+  const { cart, setCart } = useContext(CartContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${urlBase}/login`, {
+    const response = await fetch(`${urlBase}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +38,7 @@ const UserProvider = ({ children }) => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    
+
     if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
       setError(true);
       return;
@@ -46,7 +47,7 @@ const UserProvider = ({ children }) => {
     if (password.length >= 6 && password === confirmPassword) {
       setError(false);
 
-      const response = await fetch(`${urlBase}/register`, {
+      const response = await fetch(`${urlBase}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,29 +80,52 @@ const UserProvider = ({ children }) => {
     navigate("/");
   };
 
-    
-    const getUserData = async (token) => {
-        try {
-          const response = await fetch(`${urlBase}/me`, {
-            method: "GET",
-            headers: {
-              "Authorization": `Bearer ${token}`, 
-              "Content-Type": "application/json",
-            },
-          });
-    
-          const data = await response.json();
-          setUserData(data); 
-        } catch (error) {
-          console.error("Error al obtener los datos del usuario:", error);
-        }
-      };
+  const getUserData = async (token) => {
+    try {
+      const response = await fetch(`${urlBase}/auth/me`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
 
-      useEffect(() => {
-        if (token) {
-          getUserData(token);
-        }
-      }, [token]);
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error("Error al obtener los datos del usuario:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      getUserData(token);
+    }
+  }, [token]);
+
+  const handleCheckout = async () => {
+    try {
+      const response = await fetch(`${urlBase}/checkouts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ cart }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error("Error en la compra: " + errorData.message);
+      }
+      const data = await response.json();
+      alert("Compra exitosa");
+      setCart([]);
+    } catch (error) {
+      console.error(error);
+      alert("Error: " + error.message);
+    }
+  };
 
   return (
     <UserContext.Provider
@@ -117,7 +141,8 @@ const UserProvider = ({ children }) => {
         confirmPassword,
         setConfirmPassword,
         error,
-        userData
+        userData,
+        handleCheckout,
       }}
     >
       {children}

@@ -4,32 +4,7 @@ import { UserContext } from '../Context/UserContext'
 
 export const Register = () => {
 
-    const { handleRegister, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword } = useContext(UserContext)
-    const [error, setError] = useState(false)
-
-    const validarDatos = (e) => {
-        e.preventDefault()
-
-        if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
-            setError(true)
-            return
-        }
-
-        if (password.length >= 6 && password === confirmPassword) {
-            alert('Información enviada exitosamente');
-            setError(false);
-
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-        } else {
-            if (password.length < 6) {
-                alert('La contraseña debe tener al menos 6 caracteres.');
-            } else {
-                alert('Las contraseñas no coinciden.');
-            }
-        }
-    }
+    const { handleRegister, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, error } = useContext(UserContext)
 
     return (
         <>
